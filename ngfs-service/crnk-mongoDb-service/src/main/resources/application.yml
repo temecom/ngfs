@@ -1,8 +1,10 @@
 #
 # Configuration for the crank api
+server:
+  port: 8510
 crnk: 
   enabled: true
-  domain-name: http://localhost:8080
+  domain-name: http://localhost:8510
   path-prefix: /api
   default-page-limit: 20
   max-page-limit: 1000
