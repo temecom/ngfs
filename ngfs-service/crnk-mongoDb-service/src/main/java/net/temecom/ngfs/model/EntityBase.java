@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import io.crnk.core.resource.annotations.JsonApiId;
+
 @Entity
 public class EntityBase {
 
