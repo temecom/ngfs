@@ -1,0 +1,14 @@
+#
+# Configuration for the crank api
+server:
+  port: 8520
+  
+graphql:
+  spring-graphql-common:
+    clientMutationIdName: clientMutationId
+    injectClientMutationId: true
+    allowEmptyClientMutationId: false
+    mutationInputArgumentName: input
+    outputObjectNamePrefix: Payload
+    inputObjectNamePrefix: Input
+    schemaMutationObjectName: Mutation

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<groupId>net.temecom.ngfs</groupId>
+	<artifactId>ngfs-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>ngfs-service</name>
+	<description>Demo project for ngfs Spring Boot services</description>
+
+	<properties>
+		<java.version>11</java.version>
+		<crank.version>2.11.20190113153635</crank.version>
+		<spring.boot.version>2.1.2.RELEASE</spring.boot.version>
+		<graphql.spring.boot.version>5.0.2</graphql.spring.boot.version>
+		<graphql.tools.version>5.2.4</graphql.tools.version>
+	</properties>
+
+	<modules>
+		<module>ngfs-model</module>
+		<module>ngfs-crank-service</module>
+		<module>ngfs-graphql-service</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.crnk</groupId>
+				<artifactId>crnk-bom</artifactId>
+				<version>${crank.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring.boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.197</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.graphql-java</groupId>
+				<artifactId>graphql-spring-boot-starter</artifactId>
+				<version>${graphql.spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.graphql-java</groupId>
+				<artifactId>graphiql-spring-boot-starter</artifactId>
+				<version>${graphql.spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.graphql-java</groupId>
+				<artifactId>graphql-java-tools</artifactId>
+				<version>${graphql.tools.version}</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring.boot.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

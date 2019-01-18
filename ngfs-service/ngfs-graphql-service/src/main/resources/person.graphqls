@@ -1,0 +1,9 @@
+type Person {
+    id: ID!
+    givenName: String!
+    surnam: String
+}
+
+type Query {
+	peopleWithSurnam(surnam: String): [Person]!
+}
