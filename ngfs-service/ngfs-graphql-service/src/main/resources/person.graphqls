@@ -1,9 +1,9 @@
 type Person {
     id: ID!
     givenName: String!
-    surnam: String
+    surName: String
 }
 
 type Query {
-	peopleWithSurnam(surnam: String): [Person]!
+	peopleWithSurName(surName: String): [Person]!
 }

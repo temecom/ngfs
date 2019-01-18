@@ -14,8 +14,7 @@ public class Query  implements GraphQLQueryResolver {
 		@Autowired
 		private PersonRepository personRepository;
 
-	    public List<Person> peopleWithSurnam(String surnam) {
-	        return personRepository.findPersonBySurnam(surnam);
+	    public List<Person> peopleWithSurName(String surName) {
+	        return personRepository.findPersonBySurName(surName);
 	    }
-
 }

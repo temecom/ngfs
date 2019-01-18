@@ -10,7 +10,7 @@ import net.temecom.ngfs.model.Person;
 @Repository
 public interface PersonRepository extends  PagingAndSortingRepository<Person, UUID> {
 
-	List<Person> findPersonBySurnam(String surnam);
+	List<Person> findPersonBySurName(String surName);
 
  
 }

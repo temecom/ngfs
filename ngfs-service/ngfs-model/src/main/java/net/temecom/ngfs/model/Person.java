@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 public class Person extends EntityBase{
 
 	private String givenName; 
-	private String surnam;
+	private String surName;
 	@OneToMany
 	private List<ContactMethod> contactMethods; 
 	public String getGivenName() {
@@ -18,11 +18,11 @@ public class Person extends EntityBase{
 	public void setGivenName(String givenName) {
 		this.givenName = givenName;
 	}
-	public String getSurnam() {
-		return surnam;
+	public String getSurName() {
+		return surName;
 	}
-	public void setSurnam(String surnam) {
-		this.surnam = surnam;
+	public void setSurName(String surName) {
+		this.surName = surName;
 	}
 	public List<ContactMethod> getContactMethods() {
 		return contactMethods;
