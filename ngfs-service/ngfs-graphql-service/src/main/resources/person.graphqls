@@ -1,7 +1,7 @@
 type Person {
     id: ID!
     givenName: String!
-    surName: String
+    surName: String!
 }
 type Query {
 	person(id: ID): Person!
@@ -9,10 +9,17 @@ type Query {
 	people: [Person]!
 }
 
-type CreatePersonInput {
-	
+
+input CreatePersonInput {
+    givenName: String!
+    surName: String!
 }
 
-type Mutation {
+type PersonMutation {
 	createPerson(person: CreatePersonInput): Person!
+}
+
+schema {
+   query: Query
+   mutation: PersonMutation
 }

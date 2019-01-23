@@ -17,7 +17,9 @@ public class PersonMutationResolver implements GraphQLMutationResolver {
 	private PersonRepository personRepository;
 	
 	public Person createPerson(CreatePersonInput personInput) {
-		Person person = personInput.getPerson(); 
+		Person person = new Person();
+		person.setGivenName(personInput.getGivenName());
+		person.setSurName(personInput.getSurName());
 		Person newPerson = personRepository.save(person);
 		return newPerson; 
 	}

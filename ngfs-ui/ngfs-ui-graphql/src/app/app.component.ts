@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
-const GET_PEOPLE = gql'{people {id, givenName, surName}}';
+import {Observable} from 'rxjs';
+import { map, filter, switchMap } from 'rxjs/operators'
+const GET_PEOPLE = gql('{people {id, givenName, surName}}');
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +14,8 @@ export class AppComponent implements OnInit {
   people: Observable<any>;
   constructor(private apollo: Apollo) {}
   ngOnInit() {
-    this.people = this.apollo.watchQUery({query:GET_PEOPLE})
+    let self = this;
+    this.people = this.apollo.watchQuery({query:GET_PEOPLE})
       .valueChanges.pipe(map(result => result.data && result.data.people));
   }
 }
