@@ -18,10 +18,10 @@ Run (from ngfs-graphql-service folder):
 
 ## Add people
 
-### Copy and paste the query from [person.gql](./src/main/resources/queries/person.gql) into the GraphQL query window
-### Copy and paste the json from [personInput.json](./src/main/resources/queries/personInput.json) into the GraphQL variable window 
+-  Copy and paste the query from [person.gql](./src/main/resources/queries/person.gql) into the GraphQL query window
+-  Copy and paste the json from [personInput.json](./src/main/resources/queries/personInput.json) into the GraphQL variable window 
 
-### Edit the personInput json varaible
-### Run the mutation  
-### Run the query to get the list of peoaple
-### Repeat to add other people
+-  Edit the personInput json varaible
+-  Run the mutation  
+-  Run the query to get the list of peoaple
+-  Repeat to add other people
