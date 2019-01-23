@@ -3,7 +3,16 @@ type Person {
     givenName: String!
     surName: String
 }
-
 type Query {
+	person(id: ID): Person!
 	peopleWithSurName(surName: String): [Person]!
+	people: [Person]!
+}
+
+type CreatePersonInput {
+	
+}
+
+type Mutation {
+	createPerson(person: CreatePersonInput): Person!
 }

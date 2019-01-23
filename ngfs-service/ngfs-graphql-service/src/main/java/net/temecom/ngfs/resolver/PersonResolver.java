@@ -18,5 +18,7 @@ public class PersonResolver implements GraphQLResolver<Person> {
     public Optional<Person> getPerson(Person person) {
         return repository.findById(person.getId());
     }
+    
+    
 
 }
