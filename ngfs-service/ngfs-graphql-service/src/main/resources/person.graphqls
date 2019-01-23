@@ -10,13 +10,15 @@ type Query {
 }
 
 
-input CreatePersonInput {
+input PersonInput {
+	id: ID
     givenName: String!
     surName: String!
 }
 
 type PersonMutation {
-	createPerson(person: CreatePersonInput): Person!
+	createPerson(personInput: PersonInput): Person!
+	updatePerson(personInput: PersonInput): Person!
 }
 
 schema {

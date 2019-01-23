@@ -1,5 +1,9 @@
 # NgfsUiGraphql
 
+Sample Angular/GraphQL using the Apollo GraphQL module. Requires a service running as a GraphQL end point.
+
+See: [ngfs-graphql-service](../ngfs-service/ngfd-graphql-service) for a ready to run Java/SpringBoot service example
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
 
 ## Development server

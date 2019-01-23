@@ -7,9 +7,16 @@
 </div>
 
 <ul>
-  <li *ngFor="let person of people | async">
-    {{person.id}} - {{person.givenName}} {{person.surName}}
+  <li *ngFor="let person of people | async" (click)="selectPerson(person)">
+    {{person.givenName}} {{person.surName}}
   </li>
 </ul>
-
+<div *ngIf="selectedPerson">
+Id:
+{{selectedPerson.id}} <br>
+Given Name: <input [(ngModel)]="selectedPerson.givenName"/><br>
+SurName: <input [(ngModel)]="selectedPerson.surName"/><br>
+<button (click)="savePerson()">Save</button>
+</div>
+<button type="button" name="newButton" (click)="newPerson()">New</button>
 <router-outlet></router-outlet>
