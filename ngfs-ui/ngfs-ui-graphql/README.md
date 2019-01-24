@@ -8,10 +8,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## install
 - Clone this repo
+
 `git clone https://github.com/temecom/ngfs.git`
+
 - Navigate to ngfs-ui-graphql folder
+
 `cd ngfs/ngfs-ui/ngfs-ui-graphql`
+
 - Install dependencies
+
 `yarn install`
 
 ## Run development server
