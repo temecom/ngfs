@@ -1,12 +1,13 @@
-mutation PersonMutation($pi: CreatePersonInput) {
-  createPerson(person: $pi) {
+# Create a new person
+mutation PersonMutation($pi: PersonInput) {
+  createPerson(personInput: $pi) {
     id
   }
 }
 
+# Query people
 query Query {
   people {
     id, givenName, surName
   }
 }
-
