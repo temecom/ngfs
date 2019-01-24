@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import gql from 'graphql-tag';
 import {Apollo} from 'apollo-angular';
-import {Observable} from 'rxjs';
+import {Observable, BehaviorSubject} from 'rxjs';
 import { map, filter, switchMap } from 'rxjs/operators';
 import {Person} from './person';
 const GET_PEOPLE = gql('{people {id, givenName, surName}}');
@@ -27,13 +27,16 @@ updatePerson(personInput: $pi) {
 })
 export class AppComponent implements OnInit {
   title = 'NGFS GraphQL Example';
-  people: Observable<Array<Person>>;
+  private _people: BehaviorSubject<Person[]>;
+  people: Observable<any> ;
   selectedPerson: Person;
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo) {
+    this._people = <BehaviorSubject<Person[]>>new BehaviorSubject([]);
+    this.people = this._people.asObservable();
+  }
   ngOnInit() {
-    let self = this;
-    this.people = this.apollo.watchQuery({query:GET_PEOPLE})
-      .valueChanges.pipe(map(result => result.data && result.data.people));
+    this.apollo.watchQuery<any>({query:GET_PEOPLE})
+      .valueChanges.subscribe(({data, loading}) => this._people.next(data.people));
   };
 
   selectPerson(person) {
@@ -72,7 +75,7 @@ export class AppComponent implements OnInit {
       }).subscribe(({ data }) => {
         console.log('got data', data);
         this.selectedPerson = data.createPerson;
-        this.people.push(this.selectedPerson);
+        this._people.value.push(this.selectedPerson);
       },(error) => {
         console.log('there was an error sending the query', error);
       });

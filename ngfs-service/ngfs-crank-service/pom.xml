@@ -21,11 +21,7 @@
 			<version>${project.version}</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>net.temecom.ngfs</groupId>
-			<artifactId>ngfs-service-common</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
