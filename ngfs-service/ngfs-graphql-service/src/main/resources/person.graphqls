@@ -3,10 +3,16 @@ type Person {
     givenName: String!
     surName: String!
 }
+
+input OrderBy {
+	field: String!
+	direction: String!
+}
+
 type Query {
 	person(id: ID): Person!
 	peopleWithSurName(surName: String): [Person]!
-	people: [Person]!
+	people(orderBy: OrderBy) : [Person]!
 }
 
 

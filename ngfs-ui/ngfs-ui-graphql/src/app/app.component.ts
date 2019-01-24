@@ -25,9 +25,12 @@ updatePerson(personInput: $pi) {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+/**
+* Main entry point for application
+*/
 export class AppComponent implements OnInit {
   title = 'NGFS GraphQL Example';
-  private _people: BehaviorSubject<Person[]>;
+  _people: BehaviorSubject<Person[]>;
   people: Observable<any> ;
   selectedPerson: Person;
   constructor(private apollo: Apollo) {

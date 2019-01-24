@@ -1,22 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<mat-card >
+  <mat-card-title>
+    Welcome to {{ title }}!<br>
+    People
+  </mat-card-title>
+  <mat-card-content>
+    <mat-list #selectedPeople ripple="true">
+      <mat-list-item *ngFor="let person of _people.value" (click)="selectPerson(person)">
+        <mat-radio-button> {{person.givenName}} {{person.surName}}</mat-radio-button>
+      </mat-list-item>
+      </mat-list>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-title>
+    Person
+  </mat-card-title>
+  <mat-card-content *ngIf="selectedPerson">
+    <div class="ngfs-container">
 
-</div>
+      <mat-form-field class="ngfs-full-width" >
+        <input name="idInput" matInput placeholder="Id" value={{selectedPerson.id}} disabled="true"/>
+      </mat-form-field>
 
-<ul>
-  <li *ngFor="let person of people | async" (click)="selectPerson(person)">
-    {{person.givenName}} {{person.surName}}
-  </li>
-</ul>
-<div *ngIf="selectedPerson">
-Id:
-{{selectedPerson.id}} <br>
-Given Name: <input [(ngModel)]="selectedPerson.givenName"/><br>
-SurName: <input [(ngModel)]="selectedPerson.surName"/><br>
-<button (click)="savePerson()">Save</button>
-</div>
-<button type="button" name="newButton" (click)="newPerson()">New</button>
+      <mat-form-field class="ngfs-full-width">
+        <input name="surNameInputmatInput" matInput placeholder="Given Name"  [(ngModel)]="selectedPerson.givenName"/>
+      </mat-form-field>
+
+      <mat-form-field class="ngfs-full-width">
+        <input name="givenNameInput" matInput placeholder="SurName" [(ngModel)]="selectedPerson.surName"/>
+      </mat-form-field>
+
+  </div>
+</mat-card-content>
+<mat-card-footer>
+    <button mat-flat-button  name="newButton" (click)="newPerson()">New</button>
+    <button mat-button name="saveButton" (click)="savePerson()" *ngIf="selectedPerson">Save</button>
+</mat-card-footer>
+</mat-card>
 <router-outlet></router-outlet>
