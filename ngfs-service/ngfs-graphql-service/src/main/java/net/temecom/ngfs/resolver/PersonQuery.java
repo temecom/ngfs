@@ -14,7 +14,7 @@ import net.temecom.ngfs.model.Person;
 import net.temecom.ngfs.repository.PersonRepository;
 
 @Component
-public class Query implements GraphQLQueryResolver {
+public class PersonQuery implements GraphQLQueryResolver {
 	@Autowired
 	private PersonRepository personRepository;
 

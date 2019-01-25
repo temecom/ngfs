@@ -9,7 +9,7 @@ input OrderBy {
 	direction: String!
 }
 
-type Query {
+type PersonQuery {
 	person(id: ID): Person!
 	peopleWithSurName(surName: String): [Person]!
 	people(orderBy: OrderBy) : [Person]!
@@ -22,17 +22,21 @@ input PersonInput {
     surName: String!
 }
 
+type PersonOutput {
+	id: ID
+}
+
 type PersonMutation {
 	createPerson(personInput: PersonInput): Person!
 	updatePerson(personInput: PersonInput): Person!
 }
 
 type PersonSubscription {
-	personAdded(id: ID!): ID!
+	personAdded(person: PersonInput!): PersonOutput!
 }
 
 schema {
-   query: Query
+   query: PersonQuery
    mutation: PersonMutation
    subscription : PersonSubscription
 }

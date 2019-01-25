@@ -16,6 +16,7 @@
 		<spring.boot.version>2.1.2.RELEASE</spring.boot.version>
 		<graphql.spring.boot.version>5.0.2</graphql.spring.boot.version>
 		<graphql.tools.version>5.2.4</graphql.tools.version>
+		<rx.version>2.1.5</rx.version>
 	</properties>
 
 	<modules>
@@ -80,6 +81,12 @@
 				<groupId>com.graphql-java</groupId>
 				<artifactId>graphql-java-tools</artifactId>
 				<version>${graphql.tools.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.reactivex.rxjava2</groupId>
+				<artifactId>rxjava</artifactId>
+				<version>${rx.version}</version>
 			</dependency>
 
 		</dependencies>

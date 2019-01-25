@@ -1,4 +1,4 @@
-package net.temecom.ngfs.inputs;
+package net.temecom.ngfs.input;
 
 import java.util.UUID;
 

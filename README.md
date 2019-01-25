@@ -6,7 +6,7 @@ Full stack samples for Angular with GraphQL, JsonAPI, SpringBoot  and other tech
 The README steps in the various sub projects reference certain environmental variables in the form: $VARIABLE_NAME. We recommend that you assign the variables as follows:
 
 `# .bashrc
-# GitBash example
+# GitBash/Linux example
 # Adjust for your setup
 
 #GitBash
@@ -25,14 +25,13 @@ export PATH=$GIT_HOME/bin:$NODE_HOME:$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH`
 
 #Installation Prerequisites:
 
-- Java SDK  ^1.7
-- Maven ^3.5
-- Node ^10.0
-- Angular ^7.0
-- GitBash (Optional for Windows)
-- Yarn (Optional)
-- Eclipse STS (Optional)
-- Postman (Optional)
+- [Java SDK  ^1.7](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [Maven ^3.5](https://maven.apache.org/download.cgi)
+- [Node ^10.0](https://nodejs.org/en/)
+- [Angular ^7.0](https://angular.io/)
+- [GitBash (Optional for Windows)](https://gitforwindows.org/)
+- [Yarn (Optional)](https://yarnpkg.com/en/)
+- [Eclipse STS (Optional)](https://spring.io/tools)
 
 # Setup
 
@@ -43,5 +42,7 @@ In preparation for running the code samples:
 git clone https://github.com/temecom/ngfs.git
 `
 - Build the Java/SpringBoot projects
-`cd ngfs
+`cd $DEV_HOME/ngfs
 mvn clean install -DskipTests`
+
+- See individual sub project README's for installation instructions
