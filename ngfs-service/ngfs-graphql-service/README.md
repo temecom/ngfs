@@ -14,7 +14,7 @@ Run (from ngfs-graphql-service folder):
 
 ## Open graphql UI
 
-[GraphQL UI](http://localhost:8520)
+[GraphQL UI](http://localhost:8520/graphiql)
 
 ## Add people
 

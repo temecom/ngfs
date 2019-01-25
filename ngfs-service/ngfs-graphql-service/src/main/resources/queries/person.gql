@@ -1,13 +1,21 @@
+
 # Create a new person
-mutation PersonMutation($pi: PersonInput) {
+mutation PersonCreateMutation($pi: PersonInput) {
   createPerson(personInput: $pi) {
-    id
+    id, givenName, surName
+  }
+}
+
+#Update the person
+mutation PersonUpdateMutation($pi: PersonInput) {
+  updatePerson(personInput: $pi) {
+    id, givenName, surName
   }
 }
 
 # Query people
 query Query {
-  people {
+  people (orderBy:{field: "givenName", direction: "ASC"}) {
     id, givenName, surName
   }
 }
