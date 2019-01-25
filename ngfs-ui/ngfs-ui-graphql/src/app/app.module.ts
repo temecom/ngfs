@@ -44,7 +44,7 @@ import {
       return {
         cache: new InMemoryCache(),
         link: httpLink.create({
-          uri: "http://localhost:8520/graphql"
+          uri: "http://192.168.1.153:8520/graphql"
         })
       }
     },

@@ -27,7 +27,12 @@ type PersonMutation {
 	updatePerson(personInput: PersonInput): Person!
 }
 
+type PersonSubscription {
+	personAdded(id: ID!): ID!
+}
+
 schema {
    query: Query
    mutation: PersonMutation
+   subscription : PersonSubscription
 }
