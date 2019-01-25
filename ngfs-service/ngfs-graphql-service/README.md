@@ -2,6 +2,13 @@
 
 Sample GraphQL Service using SpringBoot and graphql-java
 
+Prerequisites:
+- You have installed:
+   - Java SE SDK > 1.7
+   - Apache Maven > 3.5
+   - Eclipse IDE or equivalent with the SpringBoot Tools Suite (optional)
+- DEV_HOME environmental variable is set (eg: ~/Development or C:\\Development)  
+- PATH variable has been set to include Java and Maven bin folders
 ## Build (from ngfs-service folder)
 
 `mvn clean install -DskipTests`
@@ -10,6 +17,7 @@ Sample GraphQL Service using SpringBoot and graphql-java
 
 Run (from ngfs-graphql-service folder):
 
+`cd $DEV_HOME/ngfs/ngfs-service/ngfs-graphql-service`
 `mvn spring-boot:run`
 
 ## Open graphql UI
@@ -19,7 +27,7 @@ Run (from ngfs-graphql-service folder):
 ## Add people
 
 -  Copy and paste the query from [person.gql](./src/main/resources/queries/person.gql) into the GraphQL query window
--  Copy and paste the json from [personInput.json](./src/main/resources/queries/personInput.json) into the GraphQL variable window 
+-  Copy and paste the json from [personInput.json](./src/main/resources/queries/personInput.json) into the GraphQL variable window
 
 -  Edit the personInput json varaible
 -  Run the mutation  
