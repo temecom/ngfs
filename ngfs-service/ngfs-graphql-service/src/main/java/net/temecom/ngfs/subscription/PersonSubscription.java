@@ -33,23 +33,6 @@ public class PersonSubscription {
 	@Autowired
 	private PersonMutationResolver personMutationResolver; 
 	
-	/**
-	 * Configure the publisher using defaults
-	 * @return the created publisher
-	 */
-	@Bean
-	public  Flowable<PersonOutput> publisher() {
-		Observable<PersonOutput> stockPriceUpdateObservable = Observable.create(emitter -> {
 
-			personMutationResolver.addEmitter(emitter); 
-
-	    });
-
-	    ConnectableObservable<PersonOutput> connectableObservable = stockPriceUpdateObservable.share().publish();
-	    connectableObservable.connect();
-
-	    publisher = connectableObservable.toFlowable(BackpressureStrategy.BUFFER);
-	    return publisher;
-	}
 	
 }

@@ -26,3 +26,9 @@ query QuerySortByGivenName {
   }
 }
 
+subscription PersonSubscription ($pi:PersonInput){
+   personAdded(person: $pi) {
+    id, givenName, surName
+  }
+}
+
