@@ -23,6 +23,8 @@
 		<module>ngfs-model</module>
 		<module>ngfs-crank-service</module>
 		<module>ngfs-graphql-service</module>
+		<module>ngfs-graphql-spqr-service</module>
+		<module>ngfs-service-common</module>
 	</modules>
 
 	<dependencyManagement>

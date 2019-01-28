@@ -17,4 +17,6 @@ public class PersonSubscriptionResolver implements GraphQLSubscriptionResolver {
 	public PersonOutput personAdded(PersonInput person) {
 		return new PersonOutput();  
 	}
+	
+	
 }
