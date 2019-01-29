@@ -1,17 +1,18 @@
 package net.temecom.ngfs.service;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import io.leangen.graphql.annotations.GraphQLArgument;
-import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLInputField;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
+import io.leangen.graphql.annotations.GraphQLSubscription;
 import io.leangen.graphql.spqr.spring.annotation.GraphQLApi;
 import net.temecom.ngfs.model.Person;
-import net.temecom.ngfs.proxy.PersonInputProxy;
 import net.temecom.ngfs.repository.PersonRepository;
 
 @Component
@@ -32,7 +33,13 @@ public class PersonService {
 	}
 	
 	@GraphQLMutation(name="updatePerson")
-	public Person updatePerson(@GraphQLInputField(name="person")  Person person) {
+	public Person updatePerson(@GraphQLInputField @GraphQLArgument(name="person")   Person person) {
 		return personRepository.save(person );
+	}
+	
+	@GraphQLSubscription(name="personChanged")
+	public Person personChanged(UUID id) {
+		Person person = personRepository.findById(id).get(); 
+		return person; 
 	}
 }
