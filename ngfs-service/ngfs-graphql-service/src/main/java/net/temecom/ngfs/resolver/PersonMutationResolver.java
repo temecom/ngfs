@@ -32,8 +32,8 @@ public class PersonMutationResolver implements GraphQLMutationResolver {
 	}
 
 	public Person createPerson(PersonInput personInput) {
-		Person person = new Person();
-		Person newPerson = savePerson(personInput, person);
+		Person newPerson = new Person();
+		newPerson = savePerson(personInput, newPerson);
 		PersonOutput personOutput = new PersonOutput(); 
 		//TODO: update output
 		 try {
@@ -46,10 +46,10 @@ public class PersonMutationResolver implements GraphQLMutationResolver {
 		return  newPerson;
 	}
 	
-	public Person updatePerson(PersonInput personInput) {
+	public Person updatePerson(PersonInput person) {
 		
-		Person person = personRepository.findById(personInput.getId()).get(); 
-		return  savePerson(personInput, person);
+		Person existingPerson = personRepository.findById(person.getId()).get(); 
+		return  savePerson(person, existingPerson);
 
 	}
 

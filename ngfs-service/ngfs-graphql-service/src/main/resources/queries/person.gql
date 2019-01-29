@@ -1,13 +1,13 @@
 #Add a new person
 mutation PersonCreateMutation($pi: PersonInput) {
-  createPerson(personInput: $pi) {
+  createPerson(person: $pi) {
     id, givenName, surName
   }
 }
 
 # Update the Person
 mutation PersonUpdateMutation($pi: PersonInput) {
-  updatePerson(personInput: $pi) {
+  updatePerson(person: $pi) {
     id, givenName, surName
   }
 }

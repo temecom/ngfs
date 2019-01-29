@@ -7,7 +7,7 @@ import {Person} from './person';
 const GET_PEOPLE = gql('{people {id, givenName, surName}}');
 const CREATE_PERSON = gql`
 mutation PersonCreateMutation($pi: PersonInput) {
-createPerson(personInput: $pi) {
+createPerson(person: $pi) {
   id, givenName, surName
 }
 }
@@ -15,7 +15,7 @@ createPerson(personInput: $pi) {
 
 const UPDATE_PERSON = gql`
 mutation PersonUpdateMutation($pi: PersonInput) {
-updatePerson(personInput: $pi) {
+updatePerson(person: $pi) {
   id, givenName, surName
 }
 }

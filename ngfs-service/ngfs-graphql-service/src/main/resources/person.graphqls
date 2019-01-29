@@ -27,8 +27,8 @@ type PersonOutput {
 }
 
 type PersonMutation {
-	createPerson(personInput: PersonInput): Person!
-	updatePerson(personInput: PersonInput): Person!
+	createPerson(person: PersonInput): Person!
+	updatePerson(person: PersonInput): Person!
 }
 
 type PersonSubscription {

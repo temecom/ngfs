@@ -17,6 +17,7 @@
 		<graphql.spring.boot.version>5.0.2</graphql.spring.boot.version>
 		<graphql.tools.version>5.2.4</graphql.tools.version>
 		<rx.version>2.1.5</rx.version>
+		<projectreactor.version>3.2.5.RELEASE</projectreactor.version>
 	</properties>
 
 	<modules>
@@ -95,6 +96,13 @@
 				<artifactId>rxjava</artifactId>
 				<version>${rx.version}</version>
 			</dependency>
+			
+				<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+			
+    <version>${projectreactor.version}</version>
+		</dependency>
 
 		</dependencies>
 
