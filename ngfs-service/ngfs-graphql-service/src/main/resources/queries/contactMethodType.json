@@ -1,0 +1,7 @@
+{
+	"contactMethodType": {
+		"name": "Email", 
+  		"code": "EMAIL", 
+  		"defaultSortOrder": 0
+  	}
+}

@@ -1,34 +1,27 @@
-#Add a new person
-mutation PersonCreateMutation($pi: PersonInput) {
-  createPerson(person: $pi) {
-    id, givenName, surName
-  }
-}
-
-# Update the Person
-mutation PersonUpdateMutation($pi: PersonInput) {
-  updatePerson(person: $pi) {
-    id, givenName, surName
-  }
-}
-
-#Sort by surname 
-query QuerySortBySurName {
-  people (orderBy:{field: "surName", direction: "ASC"}) {
-    id, givenName, surName
-  }
-}
-
 #Sort by given name
-query QuerySortByGivenName {
-  people (orderBy:{field: "givenName", direction: "DESC"}) {
+query QueryPeople {
+  people {
     id, givenName, surName
   }
 }
 
-subscription PersonSubscription ($pi:PersonInput){
-   personAdded(person: $pi) {
+#Add a new person
+mutation CreatePerson($newPerson: PersonInput) {
+  createPerson(person: $newPerson) {
     id, givenName, surName
+  }
+}
+
+#Update a person
+mutation UpdatePerson ($updatePerson: PersonInput) {
+  createPerson(person: $updatePerson) {
+    id, givenName, surName
+  }
+}
+
+subscription SubscribeToPersonChanged ($personId: UUID) {
+  personChanged(id: $personId) {
+     id, givenName, surName
   }
 }
 
