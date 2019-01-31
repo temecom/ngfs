@@ -17,6 +17,10 @@ export DEV_HOME=/c/Development
 #export TOOLS_HOME=~/DevelopmentTools
 #export DEV_HOME=~/Development
 
+#WSL 
+#export TOOLS_HOME=/mnt/c/DevelopmentTools
+#export DEV_HOME=/mnt/c/Development
+
 export NGFS=$DEV_HOME/ngfs
 export GIT_HOME=$TOOLS_HOME/Git
 export NODE_HOME=$TOOLS_HOME/node-v10.15.0-win-x64
