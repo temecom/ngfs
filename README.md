@@ -17,8 +17,9 @@ export DEV_HOME=/c/Development
 #export TOOLS_HOME=~/DevelopmentTools
 #export DEV_HOME=~/Development
 
-#WSL 
-#export TOOLS_HOME=/mnt/c/DevelopmentTools
+# WSL 
+#export TOOLS_HOME=~/DevelopmentTools
+# Shared with Windows
 #export DEV_HOME=/mnt/c/Development
 
 export NGFS=$DEV_HOME/ngfs
