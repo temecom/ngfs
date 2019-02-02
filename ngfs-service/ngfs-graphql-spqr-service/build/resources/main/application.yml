@@ -1,8 +1,0 @@
-server:
-  port: 8530
-graphql: 
-  spqr:
-    gui:
-      enabled: true
-  relay:
-    connection-check-relaxed: true

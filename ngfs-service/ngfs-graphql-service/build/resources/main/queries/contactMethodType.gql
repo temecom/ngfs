@@ -1,9 +1,0 @@
-mutation CreateContactMethodType ($contactMethodType: ContactMethodTypeInput) {
-  createContactMethodType(contactMethodType: $contactMethodType) {
-    id, name, code, defaultSortOrder
-  }
-}
-
-query QueryContactMethodTypes {
-  contactMethodTypes { id,name, code, defaultSortOrder}
-}
