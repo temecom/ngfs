@@ -22,18 +22,23 @@ import net.temecom.ngfs.repository.PersonRepository;
 @GraphQLApi
 @Service
 public class PersonService extends EntityService<Person> {
-	
+
 	@Autowired
 	private PersonRepository personRepository;
-	
+
 	@PostConstruct
-	public void initialize() { 
-		this.repository = personRepository; 
+	public void initialize() {
+		this.repository = personRepository;
 	}
 
 	@GraphQLQuery(name = "people")
 	public Iterable<Person> getPeople() {
-		return super.getEntities(); 
+		return super.getEntities();
+	}
+
+	@GraphQLQuery(name = "person")
+	public Person getPerson(@GraphQLArgument(name="personId") UUID id) {
+		return super.getEntity(id);
 	}
 
 	@GraphQLMutation(name = "createPerson", description = "Update a person by ID")
@@ -43,12 +48,12 @@ public class PersonService extends EntityService<Person> {
 
 	@GraphQLMutation(name = "updatePerson")
 	public Person updatePerson(@GraphQLInputField @GraphQLArgument(name="person")   Person person) {
-		return super.updateEntity(person); 
+		return super.updateEntity(person);
 	}
 
 	@GraphQLSubscription(name = "personChanged")
 	public Publisher<Person> personChanged(@GraphQLInputField @GraphQLArgument(name="id") UUID id) {
-		return super.entityChanged(id); 
+		return super.entityChanged(id);
 	}
 
 }

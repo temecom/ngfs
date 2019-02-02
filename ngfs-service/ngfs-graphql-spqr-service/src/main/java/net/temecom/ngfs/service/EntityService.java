@@ -1,7 +1,7 @@
 package net.temecom.ngfs.service;
 
 import java.util.UUID;
-
+import java.util.Optional;
 import org.reactivestreams.Publisher;
 
 import io.leangen.graphql.spqr.spring.util.ConcurrentMultiRegistry;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
 
 /**
- * Base Service for entities 
+ * Base Service for entities
  * Override subclass for each entity type and override the methods with the appropriate GraphQL annotations
  * @author temecom
  *
@@ -20,11 +20,11 @@ import reactor.core.publisher.FluxSink;
 public class  EntityService<T extends EntityBase> {
 
 	private final ConcurrentMultiRegistry<String, FluxSink<T>> subscribers = new ConcurrentMultiRegistry<>();
-	
+
 	protected EntityBaseRepository<T> repository;
 
 	public Iterable<T> getEntities() {
-		return repository.findAll(); 
+		return repository.findAll();
 	}
 
 	public T createEntity( T entity) {
@@ -32,9 +32,17 @@ public class  EntityService<T extends EntityBase> {
 	}
 
 	public T updateEntity(  T person) {
-		subscribers.get(person.getId().toString()).forEach(subscriber -> 
+		subscribers.get(person.getId().toString()).forEach(subscriber ->
 			subscriber.next(person));
 		return repository.save(person );
+	}
+
+	/**
+	* Return the entity identified by id
+	*/
+	public T getEntity( UUID id) {
+		Optional<T> optional= repository.findById(id);
+		return optional.isPresent()?optional.get():null;
 	}
 
 	/**
@@ -43,10 +51,10 @@ public class  EntityService<T extends EntityBase> {
 	 * @return the Publisher for the entity
 	 */
 	public Publisher<T> entityChanged(UUID id) {
-		 String idString = id.toString();  
-		 return Flux.create(subscriber -> 
-		 	subscribers.add(idString, subscriber.onDispose(() -> 
-		 	subscribers.remove(idString, subscriber))), 
+		 String idString = id.toString();
+		 return Flux.create(subscriber ->
+		 	subscribers.add(idString, subscriber.onDispose(() ->
+		 	subscribers.remove(idString, subscriber))),
 		 	FluxSink.OverflowStrategy.LATEST);
 	}
 

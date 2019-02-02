@@ -1,8 +1,15 @@
 
 {
-  "pi":  {
+  "newPerson":  {
       "givenName": "Stephen",
       "surName": "Smith"
-    
-  }
+
+  },
+  "updatePerson":  {
+      "id": "use the UUID for the person",
+      "givenName": "Stephen",
+      "surName": "Smith"
+
+  },
+  "personId": "use the UUID for the person"
 }

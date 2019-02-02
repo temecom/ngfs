@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import gql from 'graphql-tag';
-import {Apollo} from 'apollo-angular';
+import {Apollo, QueryRef} from 'apollo-angular';
 import {Observable, BehaviorSubject} from 'rxjs';
 import { map, filter, switchMap } from 'rxjs/operators';
 import {Person} from './person';
@@ -13,6 +13,12 @@ createPerson(person: $pi) {
 }
 `;
 
+const GET_PERSON_QUERY = gql`query GetPersonQuery ($personId: UUID) {
+person (personId: $personId)  {
+  id, givenName, surName
+  }
+}
+`;
 const UPDATE_PERSON = gql`
 mutation PersonUpdateMutation($pi: PersonInput) {
 updatePerson(person: $pi) {
@@ -20,6 +26,12 @@ updatePerson(person: $pi) {
 }
 }
 `;
+
+const PERSON_SUBSCRIPTION=gql`subscription SubscribeToPersonChanged ($personId: UUID) {
+  personChanged(id: $personId) {
+     id, givenName, surName
+  }
+}`;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -32,7 +44,8 @@ export class AppComponent implements OnInit {
   title = 'NGFS GraphQL Example';
   _people: BehaviorSubject<Person[]>;
   people: Observable<any> ;
-  selectedPerson: Person;
+  selectedPerson: Observable<Person>;
+  personQuery: QueryRef<Person>;
   constructor(private apollo: Apollo) {
     this._people = <BehaviorSubject<Person[]>>new BehaviorSubject([]);
     this.people = this._people.asObservable();
@@ -40,12 +53,22 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.apollo.watchQuery<any>({query:GET_PEOPLE})
       .valueChanges.subscribe(({data, loading}) => this._people.next(data.people));
+    this.personQuery = this.apollo.watchQuery({
+      query: GET_PERSON_QUERY,
+      variables: {
+        personId: `$person.id`
+      }
+    });
+    this.selectedPerson=this.personQuery.valueChanges;
   };
 
   selectPerson(person) {
     this.selectedPerson = person;
   };
 
+  /**
+  * Save the person using the create or update watchQuery
+  */
   savePerson() {
     // Save the person
     let person = this.selectedPerson;
@@ -85,6 +108,24 @@ export class AppComponent implements OnInit {
     }
   };
 
+  subscribe() {
+    let person = this.selectedPerson;
+    if(person.id) {
+      this.personQuery.subscribeToMore({
+        document: PERSON_SUBSCRIPTION,
+        variables: {
+          personId: this.selectedPerson.id
+        },
+        updateQuery: (prev, {subscriptionData}) => {
+          if (!subscriptionData.data) {
+            return prev;
+          }
+          return subscriptionData.data;
+        }
+      });
+    }
+
+  }
   newPerson() {
     this.selectedPerson = new Person();
   }

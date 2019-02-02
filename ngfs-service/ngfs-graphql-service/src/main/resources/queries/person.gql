@@ -3,8 +3,14 @@ query QueryPeople {
   people {
     id, givenName, surName
   }
+
 }
 
+query GetPersonQuery ($personId: String) {
+person (personId: $personId)  {
+  id, givenName, surName
+  }
+}
 #Add a new person
 mutation CreatePerson($newPerson: PersonInput) {
   createPerson(person: $newPerson) {
@@ -24,4 +30,3 @@ subscription SubscribeToPersonChanged ($personId: UUID) {
      id, givenName, surName
   }
 }
-
