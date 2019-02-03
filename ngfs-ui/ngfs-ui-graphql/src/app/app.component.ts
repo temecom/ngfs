@@ -44,7 +44,8 @@ export class AppComponent implements OnInit {
   title = 'NGFS GraphQL Example';
   _people: BehaviorSubject<Person[]>;
   people: Observable<any> ;
-  selectedPerson: Observable<Person>;
+  selectedPerson: Person;
+  selectedPersonObserver: Observable<Person>;
   personQuery: QueryRef<Person>;
   constructor(private apollo: Apollo) {
     this._people = <BehaviorSubject<Person[]>>new BehaviorSubject([]);
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
         personId: `$person.id`
       }
     });
-    this.selectedPerson=this.personQuery.valueChanges;
+
   };
 
   selectPerson(person) {
