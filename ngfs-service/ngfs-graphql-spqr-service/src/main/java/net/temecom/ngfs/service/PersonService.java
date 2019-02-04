@@ -22,6 +22,15 @@ import net.temecom.ngfs.repository.PersonRepository;
 @GraphQLApi
 @Service
 public class PersonService extends EntityService<Person> {
+	
+	private static final String ENTITY_NAME = "person";
+	private static final String ENTITY_NAME_CAMEL = "Person";
+	private static final String ENTITY_PLURAL = "people";
+	
+	private static final String ID_PROPERTY_NAME = ENTITY_NAME+"Id";
+	private static final String CREATE_ENTITY_NAME = "create" +  ENTITY_NAME_CAMEL; 
+	private static final String UPDATE_ENTITY_NAME = "update" +  ENTITY_NAME_CAMEL; 
+	private static final String SUBSCRIPTION_NAME = ENTITY_NAME +  "Changed"; 
 
 	@Autowired
 	private PersonRepository personRepository;
@@ -31,28 +40,28 @@ public class PersonService extends EntityService<Person> {
 		this.repository = personRepository;
 	}
 
-	@GraphQLQuery(name = "people")
-	public Iterable<Person> getPeople() {
+	@GraphQLQuery(name = ENTITY_PLURAL)
+	public Iterable<Person> getEntities() {
 		return super.getEntities();
 	}
 
-	@GraphQLQuery(name = "person")
-	public Person getPerson(@GraphQLArgument(name="personId") UUID id) {
+	@GraphQLQuery(name = ENTITY_NAME)
+	public Person getEntity(@GraphQLArgument(name=ID_PROPERTY_NAME) UUID id) {
 		return super.getEntity(id);
 	}
 
-	@GraphQLMutation(name = "createPerson", description = "Update a person by ID")
-	public Person createPerson( @GraphQLArgument(name="person") Person entity) {
+	@GraphQLMutation(name = CREATE_ENTITY_NAME, description = "Update "+ ENTITY_NAME + " by ID")
+	public Person createEntity( @GraphQLArgument(name=ENTITY_NAME) Person entity) {
 		return super.createEntity(entity );
 	}
 
-	@GraphQLMutation(name = "updatePerson")
-	public Person updatePerson(@GraphQLInputField @GraphQLArgument(name="person")   Person person) {
-		return super.updateEntity(person);
+	@GraphQLMutation(name = UPDATE_ENTITY_NAME)
+	public Person updateEntity(@GraphQLInputField @GraphQLArgument(name=ENTITY_NAME)   Person entity) {
+		return super.updateEntity(entity);
 	}
 
-	@GraphQLSubscription(name = "personChanged")
-	public Publisher<Person> personChanged(@GraphQLInputField @GraphQLArgument(name="id") UUID id) {
+	@GraphQLSubscription(name = SUBSCRIPTION_NAME)
+	public Publisher<Person> entityChanged(@GraphQLInputField @GraphQLArgument(name="id") UUID id) {
 		return super.entityChanged(id);
 	}
 

@@ -3,10 +3,9 @@ query QueryPeople {
   people {
     id, givenName, surName
   }
-
 }
 
-query GetPersonQuery ($personId: String) {
+query GetPersonQuery ($personId: UUID) {
 person (personId: $personId)  {
   id, givenName, surName
   }
@@ -20,7 +19,7 @@ mutation CreatePerson($newPerson: PersonInput) {
 
 #Update a person
 mutation UpdatePerson ($updatePerson: PersonInput) {
-  createPerson(person: $updatePerson) {
+  updatePerson(person: $updatePerson) {
     id, givenName, surName
   }
 }
